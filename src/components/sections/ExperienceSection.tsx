@@ -1,0 +1,168 @@
+import { motion } from "framer-motion";
+import { Briefcase, Calendar, TrendingUp } from "lucide-react";
+import FadeIn from "@/components/animations/FadeIn";
+import BlurText from "@/components/animations/BlurText";
+
+const experiences = [
+  {
+    title: "AI Intern – Cybersecurity",
+    company: "ASSR Emporium, KK Nagar",
+    period: "July 2025 – Present",
+    highlights: [
+      "Designed a multimodal agentic RAG system that improved threat identification efficiency by ~30%",
+      "Reduced incident response time by ~28% through LLM-powered semantic retrieval and intelligent alerting",
+      "Enhanced cybersecurity team productivity by ~20% by automating threat knowledge access",
+    ],
+    current: true,
+  },
+  {
+    title: "Research Intern - Machine Learning",
+    company: "SRM Group Research Team, Ramapuram",
+    period: "April 2025 – June 2025",
+    highlights: [
+      "Analyzed 10,000+ historical operational records to identify recurring failure patterns",
+      "Implemented a self-adapting ML model that reduced predicted downtime by ~25%",
+      "Improved maintenance planning efficiency by ~20% using trend analysis",
+    ],
+  },
+  {
+    title: "Intern – Data Science",
+    company: "TVS Credit Services, Nungambakkam",
+    period: "December 2024 – January 2025",
+    highlights: [
+      "Automated vehicle valuation workflow using CNN-based image classification, reducing manual effort by ~35%",
+      "Improved resale price estimation accuracy by ~18% through computer vision",
+      "Accelerated evaluation turnaround time by ~30%",
+    ],
+  },
+];
+
+const leadership = [
+  {
+    title: "Executive Secretary",
+    org: "SCARDS Student Club, Easwari Engineering College",
+    period: "October 2025 – Present",
+    description: "Managed 10+ college-level events, coordinating 50+ team members",
+  },
+  {
+    title: "Joint Technical Head",
+    org: "SCARDS Student Club, Easwari Engineering College",
+    period: "Oct 2024 - Feb 2025",
+    description: "Led 12+ technical workshops impacting 350+ students, increased participation by ~40%",
+  },
+];
+
+const ExperienceSection = () => {
+  return (
+    <section id="experience" className="py-24 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <FadeIn>
+          <div className="text-center mb-16">
+            <span className="text-accent font-medium tracking-wider uppercase text-sm">Career Journey</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mt-4">
+              <BlurText text="Experience & Leadership" className="justify-center" animateBy="words" delay={100} />
+            </h2>
+          </div>
+        </FadeIn>
+
+        {/* Experience Timeline */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-primary to-accent/20 transform md:-translate-x-1/2" />
+
+            {experiences.map((exp, index) => (
+              <FadeIn
+                key={index}
+                delay={index * 0.15}
+                direction={index % 2 === 0 ? "left" : "right"}
+              >
+                <motion.div
+                  className={`relative flex flex-col md:flex-row gap-8 mb-12 ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-accent shadow-glow transform -translate-x-1/2 md:-translate-x-1/2 mt-6">
+                    {exp.current && (
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-accent"
+                        animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className={`md:w-1/2 pl-8 md:pl-0 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
+                    <div className="glass-card p-6 rounded-xl hover:border-accent/30 transition-colors">
+                      <div className={`flex items-center gap-2 text-accent text-sm mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                        <Calendar className="w-4 h-4" />
+                        <span>{exp.period}</span>
+                        {exp.current && (
+                          <span className="px-2 py-0.5 bg-accent/20 rounded-full text-xs font-medium">Current</span>
+                        )}
+                      </div>
+                      
+                      <h3 className="text-xl font-display font-semibold mb-1">{exp.title}</h3>
+                      <p className="text-muted-foreground mb-4">{exp.company}</p>
+                      
+                      <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                        {exp.highlights.map((highlight, i) => (
+                          <li key={i} className={`flex items-start gap-2 text-sm text-foreground/80 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+                            <TrendingUp className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Spacer for timeline */}
+                  <div className="hidden md:block md:w-1/2" />
+                </motion.div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+
+        {/* Leadership */}
+        <FadeIn delay={0.4}>
+          <div className="mt-20">
+            <h3 className="text-2xl font-display font-semibold text-center mb-8">
+              <span className="text-gradient">Leadership Roles</span>
+            </h3>
+            
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {leadership.map((role, index) => (
+                <motion.div
+                  key={index}
+                  className="glass-card p-6 rounded-xl hover:border-accent/30 transition-all"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-accent/20">
+                      <Briefcase className="w-5 h-5 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">{role.title}</h4>
+                      <p className="text-sm text-muted-foreground mb-2">{role.org}</p>
+                      <p className="text-xs text-accent mb-2">{role.period}</p>
+                      <p className="text-sm text-foreground/80">{role.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+};
+
+export default ExperienceSection;
