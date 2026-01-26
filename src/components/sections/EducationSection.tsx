@@ -9,15 +9,15 @@ const education = [
     institution: "Easwari Engineering College",
     location: "Chennai, Tamil Nadu",
     year: "2027 (Expected)",
-    grade: "8.43 CGPA (Scale of 10) - Semester IV",
+    grade: "8.98 CGPA (Scale of 10) - Semester V",
     current: true,
   },
   {
     degree: "Higher Secondary",
-    institution: "Velammal Vidyashram",
-    location: "Surapet, Tamil Nadu",
+    institution: "Chinmaya Vidyalaya Virugambakkam",
+    location: "Chennai, Tamil Nadu",
     year: "2023",
-    grade: "82.8%",
+    grade: "94.6%",
   },
 ];
 
