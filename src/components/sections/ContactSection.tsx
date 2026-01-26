@@ -122,9 +122,6 @@ const ContactSection = () => {
               <p className="text-sm text-muted-foreground">
                 © 2025 S Jananii. All rights reserved.
               </p>
-              <p className="text-sm text-muted-foreground flex items-center gap-1">
-                Built with <Heart className="w-4 h-4 text-accent inline" /> using React & Framer Motion
-              </p>
             </div>
           </div>
         </footer>
