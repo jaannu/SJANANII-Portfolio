@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Github, MapPin, Send, Heart } from "lucide-react";
+import { Mail, Phone, Linkedin, MapPin, Send} from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import Magnet from "@/components/animations/Magnet";
