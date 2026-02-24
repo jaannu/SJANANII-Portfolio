@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen, Calendar } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const education = [
   {
@@ -43,7 +44,9 @@ const EducationSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
-            <span className="text-accent font-medium tracking-wider uppercase text-sm">Learning Journey</span>
+            <span className="font-mono text-accent text-sm">
+              <span className="text-muted-foreground">$</span> cat education.md
+            </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mt-4">
               <BlurText text="Education & Certifications" className="justify-center" animateBy="words" delay={100} />
             </h2>
@@ -62,32 +65,34 @@ const EducationSection = () => {
           <div className="space-y-6">
             {education.map((edu, index) => (
               <FadeIn key={index} delay={index * 0.15} direction="left">
-                <motion.div
-                  className="glass-card rounded-2xl p-6 relative overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {edu.current && (
-                    <div className="absolute top-0 right-0 px-4 py-1 bg-accent text-primary-foreground text-xs font-medium rounded-bl-xl">
-                      Currently Pursuing
-                    </div>
-                  )}
-                  
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                      <h4 className="text-xl font-display font-semibold mb-2">{edu.degree}</h4>
-                      <p className="text-muted-foreground mb-1">{edu.institution}</p>
-                      <p className="text-sm text-muted-foreground/70">{edu.location}</p>
-                    </div>
-                    <div className="text-left md:text-right">
-                      <div className="flex items-center gap-2 text-accent mb-1">
-                        <Calendar className="w-4 h-4" />
-                        <span className="font-medium">{edu.year}</span>
+                <TerminalWindow title={`degree-${index}.md`}>
+                  <motion.div
+                    className="p-6 relative"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {edu.current && (
+                      <div className="absolute top-0 right-0 px-4 py-1 bg-accent text-primary-foreground text-xs font-mono rounded-bl-xl">
+                        Currently Pursuing
                       </div>
-                      <p className="text-sm font-semibold">{edu.grade}</p>
+                    )}
+                    
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div>
+                        <h4 className="text-xl font-display font-semibold mb-2">{edu.degree}</h4>
+                        <p className="text-muted-foreground mb-1 font-mono text-sm">{edu.institution}</p>
+                        <p className="text-sm text-muted-foreground/70 font-mono">{edu.location}</p>
+                      </div>
+                      <div className="text-left md:text-right">
+                        <div className="flex items-center gap-2 text-accent mb-1">
+                          <Calendar className="w-4 h-4" />
+                          <span className="font-mono text-sm">{edu.year}</span>
+                        </div>
+                        <p className="text-sm font-semibold font-mono">{edu.grade}</p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </TerminalWindow>
               </FadeIn>
             ))}
           </div>
@@ -117,7 +122,7 @@ const EducationSection = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-medium truncate">{cert.name}</p>
-                    <p className="text-xs text-muted-foreground">{cert.org} • {cert.year}</p>
+                    <p className="text-xs text-muted-foreground font-mono">{cert.org} • {cert.year}</p>
                   </div>
                 </motion.div>
               ))}

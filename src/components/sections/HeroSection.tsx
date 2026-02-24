@@ -5,6 +5,7 @@ import SplitText from "@/components/animations/SplitText";
 import GradientText from "@/components/animations/GradientText";
 import Magnet from "@/components/animations/Magnet";
 import FadeIn from "@/components/animations/FadeIn";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const HeroSection = () => {
   return (
@@ -13,28 +14,13 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-hero">
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-crimson-medium/20 blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-crimson-bright/15 blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.6, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
       </div>
 
@@ -45,36 +31,42 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <BlurText
-            text="Hello, I'm"
-            className="justify-center text-lg md:text-xl text-muted-foreground mb-4 font-sans tracking-wider uppercase"
-            delay={80}
-            animateBy="letters"
-          />
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6">
-            <SplitText
-              text="S Jananii"
-              className="justify-center"
-              splitBy="chars"
-              delay={60}
-              as="span"
-            />
-          </h1>
+          <FadeIn delay={0.2}>
+            <TerminalWindow title="~/s-jananii/portfolio" className="max-w-3xl mx-auto mb-8">
+              <div className="p-6 md:p-10 text-center">
+                <p className="font-mono text-sm text-accent mb-4">
+                  <span className="text-muted-foreground">$</span> whoami
+                </p>
+                
+                <BlurText
+                  text="Hello, I'm"
+                  className="justify-center text-lg md:text-xl text-muted-foreground mb-4 font-sans tracking-wider uppercase"
+                  delay={80}
+                  animateBy="letters"
+                />
+                
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6">
+                  <SplitText
+                    text="S Jananii"
+                    className="justify-center"
+                    splitBy="chars"
+                    delay={60}
+                    as="span"
+                  />
+                </h1>
 
-          <div className="mb-8">
-            <GradientText className="text-2xl md:text-3xl font-display font-medium">
-              AI & Data Science Engineer
-            </GradientText>
-          </div>
+                <div className="mb-6">
+                  <GradientText className="text-2xl md:text-3xl font-display font-medium">
+                    AI & Data Science Engineer
+                  </GradientText>
+                </div>
 
-          <BlurText
-            text="Building intelligent, data-driven solutions that make an impact"
-            className="justify-center text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
-            delay={40}
-            animateBy="words"
-            direction="bottom"
-          />
+                <p className="font-mono text-xs text-muted-foreground/60 mt-4">
+                  <span className="text-accent">→</span> Building intelligent, data-driven solutions that make an impact
+                </p>
+              </div>
+            </TerminalWindow>
+          </FadeIn>
 
           {/* Contact Links */}
           <FadeIn delay={0.6}>
@@ -85,7 +77,7 @@ const HeroSection = () => {
                   className="group flex items-center gap-2 px-5 py-3 rounded-full glass-card hover:border-accent/50 transition-all duration-300"
                 >
                   <Mail className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium">j.a.n27suresh@gmail.com</span>
+                  <span className="text-sm font-mono">j.a.n27suresh@gmail.com</span>
                 </a>
               </Magnet>
 
@@ -95,7 +87,7 @@ const HeroSection = () => {
                   className="group flex items-center gap-2 px-5 py-3 rounded-full glass-card hover:border-accent/50 transition-all duration-300"
                 >
                   <Phone className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium">+91 8056028354</span>
+                  <span className="text-sm font-mono">+91 8056028354</span>
                 </a>
               </Magnet>
 
@@ -107,14 +99,14 @@ const HeroSection = () => {
                   className="group flex items-center gap-2 px-5 py-3 rounded-full glass-card hover:border-accent/50 transition-all duration-300"
                 >
                   <Linkedin className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium">LinkedIn</span>
+                  <span className="text-sm font-mono">LinkedIn</span>
                 </a>
               </Magnet>
 
               <Magnet strength={0.2}>
                 <span className="flex items-center gap-2 px-5 py-3 rounded-full glass-card">
                   <MapPin className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-medium">Chennai, Tamil Nadu</span>
+                  <span className="text-sm font-mono">Chennai, Tamil Nadu</span>
                 </span>
               </Magnet>
             </div>
@@ -125,11 +117,11 @@ const HeroSection = () => {
             <Magnet strength={0.15}>
               <motion.a
                 href="#experience"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-accent rounded-full font-semibold text-primary-foreground shadow-glow hover:shadow-elevated transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-accent rounded-full font-semibold text-primary-foreground shadow-glow hover:shadow-elevated transition-all duration-300 font-mono"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Explore My Work
+                <span className="text-primary-foreground/60">$</span> explore --work
                 <motion.span
                   animate={{ y: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}

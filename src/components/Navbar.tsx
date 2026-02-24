@@ -41,8 +41,13 @@ const Navbar = () => {
         >
           {/* Logo */}
           <Magnet strength={0.2}>
-            <a href="#" className="text-xl font-display font-bold text-gradient">
-              SJ
+            <a href="#" className="flex items-center gap-2">
+              <div className="flex gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-crimson-bright/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-crimson-medium/60" />
+                <div className="w-2.5 h-2.5 rounded-full bg-crimson-dark/60" />
+              </div>
+              <span className="text-xl font-mono font-bold text-gradient ml-1">SJ</span>
             </a>
           </Magnet>
 
@@ -52,11 +57,12 @@ const Navbar = () => {
               <Magnet key={item.label} strength={0.15}>
                 <motion.a
                   href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                  className="px-4 py-2 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors relative group"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
+                  <span className="text-accent/50 mr-1">/</span>
                   {item.label}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent rounded-full group-hover:w-3/4 transition-all duration-300" />
                 </motion.a>
@@ -88,12 +94,13 @@ const Navbar = () => {
                   <motion.a
                     key={item.label}
                     href={item.href}
-                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                    className="px-4 py-3 text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                     onClick={() => setIsOpen(false)}
                   >
+                    <span className="text-accent/50 mr-2">/</span>
                     {item.label}
                   </motion.a>
                 ))}

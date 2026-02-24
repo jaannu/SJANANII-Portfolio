@@ -3,6 +3,7 @@ import { ExternalLink, Github, Shield, Brain, Car, Users, BarChart, DollarSign, 
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import Magnet from "@/components/animations/Magnet";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const projects = [
   {
@@ -69,7 +70,9 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
-            <span className="text-accent font-medium tracking-wider uppercase text-sm">Portfolio</span>
+            <span className="font-mono text-accent text-sm">
+              <span className="text-muted-foreground">$</span> git log --oneline projects/
+            </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mt-4">
               <BlurText text="Featured Projects" className="justify-center" animateBy="words" delay={100} />
             </h2>
@@ -81,32 +84,34 @@ const ProjectsSection = () => {
           {featuredProjects.map((project, index) => (
             <FadeIn key={index} delay={index * 0.15}>
               <Magnet strength={0.08}>
-                <motion.div
-                  className="glass-card rounded-2xl p-8 h-full flex flex-col group"
-                  whileHover={{ 
-                    y: -12,
-                    boxShadow: "0 30px 60px hsl(355 70% 43% / 0.2)"
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <project.icon className="w-7 h-7 text-primary-foreground" />
-                  </div>
-                  
-                  <h3 className="text-xl font-display font-semibold mb-3">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-6 flex-grow">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-3 py-1 text-xs rounded-full bg-accent/20 text-accent font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
+                <TerminalWindow title={`${project.title.toLowerCase().split(' ').slice(0, 2).join('-')}.py`}>
+                  <motion.div
+                    className="p-8 h-full flex flex-col group"
+                    whileHover={{ 
+                      y: -12,
+                      boxShadow: "0 30px 60px hsl(355 70% 43% / 0.2)"
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                      <project.icon className="w-7 h-7 text-primary-foreground" />
+                    </div>
+                    
+                    <h3 className="text-xl font-display font-semibold mb-3">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-6 flex-grow">{project.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 text-xs rounded-full bg-accent/20 text-accent font-mono"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                </TerminalWindow>
               </Magnet>
             </FadeIn>
           ))}
@@ -137,7 +142,7 @@ const ProjectsSection = () => {
                   <p className="text-xs text-muted-foreground line-clamp-2">{project.description}</p>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {project.tags.slice(0, 2).map((tag, tagIndex) => (
-                      <span key={tagIndex} className="text-xs text-accent">
+                      <span key={tagIndex} className="text-xs text-accent font-mono">
                         {tag}{tagIndex < Math.min(project.tags.length, 2) - 1 ? " •" : ""}
                       </span>
                     ))}

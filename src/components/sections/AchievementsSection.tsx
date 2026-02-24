@@ -2,71 +2,33 @@ import { motion } from "framer-motion";
 import { Trophy, Medal, Award, Star } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const achievements = [
-  {
-    title: "Winner – VisAIon Hackathon",
-    org: "CIKLUM & IET",
-    description: "AI-driven customer personalization system",
-    icon: Trophy,
-    tier: "gold",
-  },
-  {
-    title: "2nd Place – TechXelerate'25 Hackathon",
-    org: "BITS Pilani",
-    icon: Medal,
-    tier: "silver",
-  },
-  {
-    title: "Winner – Agile Network Ideathon 2025",
-    icon: Trophy,
-    tier: "gold",
-  },
-  {
-    title: "Top 10 Finalist – CMR Hackfest 3.0",
-    icon: Star,
-    tier: "bronze",
-  },
-  {
-    title: "Finalist – HITS Intellithon",
-    description: "AI-based solutions",
-    icon: Award,
-    tier: "silver",
-  },
-  {
-    title: "Multiple Podium Finishes",
-    description: "National-level symposiums in AI, ML, Cybersecurity, and Web Development",
-    icon: Star,
-    tier: "bronze",
-  },
+  { title: "Winner – VisAIon Hackathon", org: "CIKLUM & IET", description: "AI-driven customer personalization system", icon: Trophy, tier: "gold" },
+  { title: "2nd Place – TechXelerate'25 Hackathon", org: "BITS Pilani", icon: Medal, tier: "silver" },
+  { title: "Winner – Agile Network Ideathon 2025", icon: Trophy, tier: "gold" },
+  { title: "Top 10 Finalist – CMR Hackfest 3.0", icon: Star, tier: "bronze" },
+  { title: "Finalist – HITS Intellithon", description: "AI-based solutions", icon: Award, tier: "silver" },
+  { title: "Multiple Podium Finishes", description: "National-level symposiums in AI, ML, Cybersecurity, and Web Development", icon: Star, tier: "bronze" },
 ];
 
 const speakerExperience = [
-  {
-    title: "IGEN ENERGATHON Speaker",
-    description: "Participated for 2025 minutes",
-  },
-  {
-    title: "AI and ML Workshop",
-    description: "Montfort Matriculation School - 200+ 11th and 12th students",
-  },
+  { title: "IGEN ENERGATHON Speaker", description: "Participated for 2025 minutes" },
+  { title: "AI and ML Workshop", description: "Montfort Matriculation School - 200+ 11th and 12th students" },
 ];
 
 const AchievementsSection = () => {
   const getTierStyles = (tier: string) => {
     switch (tier) {
-      case "gold":
-        return "from-yellow-500/30 to-yellow-600/10 border-yellow-500/30";
-      case "silver":
-        return "from-gray-300/30 to-gray-400/10 border-gray-400/30";
-      default:
-        return "from-amber-700/30 to-amber-800/10 border-amber-700/30";
+      case "gold": return "from-yellow-500/30 to-yellow-600/10 border-yellow-500/30";
+      case "silver": return "from-gray-300/30 to-gray-400/10 border-gray-400/30";
+      default: return "from-amber-700/30 to-amber-800/10 border-amber-700/30";
     }
   };
 
   return (
     <section id="achievements" className="py-24 relative overflow-hidden">
-      {/* Background decorations */}
       <motion.div
         className="absolute top-20 right-10 text-accent/5"
         animate={{ rotate: 360 }}
@@ -78,7 +40,9 @@ const AchievementsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
-            <span className="text-accent font-medium tracking-wider uppercase text-sm">Recognition</span>
+            <span className="font-mono text-accent text-sm">
+              <span className="text-muted-foreground">$</span> cat achievements.log
+            </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mt-4">
               <BlurText text="Achievements & Awards" className="justify-center" animateBy="words" delay={100} />
             </h2>
@@ -104,12 +68,8 @@ const AchievementsSection = () => {
                   </div>
                   <div>
                     <h3 className="font-display font-semibold mb-1">{achievement.title}</h3>
-                    {achievement.org && (
-                      <p className="text-sm text-muted-foreground mb-1">{achievement.org}</p>
-                    )}
-                    {achievement.description && (
-                      <p className="text-sm text-foreground/70">{achievement.description}</p>
-                    )}
+                    {achievement.org && <p className="text-sm text-muted-foreground font-mono mb-1">{achievement.org}</p>}
+                    {achievement.description && <p className="text-sm text-foreground/70">{achievement.description}</p>}
                   </div>
                 </div>
               </motion.div>
@@ -126,18 +86,19 @@ const AchievementsSection = () => {
             
             <div className="grid md:grid-cols-2 gap-4">
               {speakerExperience.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  className="glass-card rounded-xl p-5 text-center"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -3 }}
-                >
-                  <h4 className="font-semibold mb-2">{exp.title}</h4>
-                  <p className="text-sm text-muted-foreground">{exp.description}</p>
-                </motion.div>
+                <TerminalWindow key={index} title={`talk-${index}.md`}>
+                  <motion.div
+                    className="p-5 text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -3 }}
+                  >
+                    <h4 className="font-semibold mb-2">{exp.title}</h4>
+                    <p className="text-sm text-muted-foreground font-mono">{exp.description}</p>
+                  </motion.div>
+                </TerminalWindow>
               ))}
             </div>
           </div>

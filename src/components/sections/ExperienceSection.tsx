@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Briefcase, Calendar, TrendingUp } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const experiences = [
   {
@@ -60,7 +61,9 @@ const ExperienceSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
-            <span className="text-accent font-medium tracking-wider uppercase text-sm">Career Journey</span>
+            <span className="font-mono text-accent text-sm">
+              <span className="text-muted-foreground">$</span> cat career.log
+            </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold mt-4">
               <BlurText text="Experience & Leadership" className="justify-center" animateBy="words" delay={100} />
             </h2>
@@ -99,27 +102,29 @@ const ExperienceSection = () => {
 
                   {/* Content */}
                   <div className={`md:w-1/2 pl-8 md:pl-0 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                    <div className="glass-card p-6 rounded-xl hover:border-accent/30 transition-colors">
-                      <div className={`flex items-center gap-2 text-accent text-sm mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                        <Calendar className="w-4 h-4" />
-                        <span>{exp.period}</span>
-                        {exp.current && (
-                          <span className="px-2 py-0.5 bg-accent/20 rounded-full text-xs font-medium">Current</span>
-                        )}
+                    <TerminalWindow title={`job-${index}.sh`}>
+                      <div className="p-5">
+                        <div className={`flex items-center gap-2 text-accent text-sm mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                          <Calendar className="w-4 h-4" />
+                          <span className="font-mono text-xs">{exp.period}</span>
+                          {exp.current && (
+                            <span className="px-2 py-0.5 bg-accent/20 rounded-full text-xs font-mono">Active</span>
+                          )}
+                        </div>
+                        
+                        <h3 className="text-xl font-display font-semibold mb-1">{exp.title}</h3>
+                        <p className="text-muted-foreground mb-4 font-mono text-sm">{exp.company}</p>
+                        
+                        <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                          {exp.highlights.map((highlight, i) => (
+                            <li key={i} className={`flex items-start gap-2 text-sm text-foreground/80 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+                              <span className="text-accent font-mono mt-0.5 flex-shrink-0">→</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      
-                      <h3 className="text-xl font-display font-semibold mb-1">{exp.title}</h3>
-                      <p className="text-muted-foreground mb-4">{exp.company}</p>
-                      
-                      <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                        {exp.highlights.map((highlight, i) => (
-                          <li key={i} className={`flex items-start gap-2 text-sm text-foreground/80 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                            <TrendingUp className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    </TerminalWindow>
                   </div>
 
                   {/* Spacer for timeline */}
@@ -139,23 +144,24 @@ const ExperienceSection = () => {
             
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {leadership.map((role, index) => (
-                <motion.div
-                  key={index}
-                  className="glass-card p-6 rounded-xl hover:border-accent/30 transition-all"
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-accent/20">
-                      <Briefcase className="w-5 h-5 text-accent" />
+                <TerminalWindow key={index} title={`role-${index}.md`}>
+                  <motion.div
+                    className="p-5"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-lg bg-accent/20">
+                        <Briefcase className="w-5 h-5 text-accent" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">{role.title}</h4>
+                        <p className="text-sm text-muted-foreground font-mono">{role.org}</p>
+                        <p className="text-xs text-accent font-mono mb-2">{role.period}</p>
+                        <p className="text-sm text-foreground/80">{role.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">{role.title}</h4>
-                      <p className="text-sm text-muted-foreground mb-2">{role.org}</p>
-                      <p className="text-xs text-accent mb-2">{role.period}</p>
-                      <p className="text-sm text-foreground/80">{role.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </TerminalWindow>
               ))}
             </div>
           </div>
