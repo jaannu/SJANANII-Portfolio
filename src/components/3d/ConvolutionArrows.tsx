@@ -64,11 +64,11 @@ const ConvolutionArrows = ({ from, to, active = true }: ConvolutionArrowsProps) 
       {/* Flowing particles */}
       <group ref={particlesRef}>
         {Array.from({ length: 4 }).map((_, i) => (
-          <mesh key={i}>
+          <mesh key={i} scale={0.05}>
             <sphereGeometry args={[1, 8, 8]} />
             <meshStandardMaterial
-              color="hsl(355, 80%, 55%)"
-              emissive="hsl(355, 80%, 55%)"
+              color="#AD2831"
+              emissive="#AD2831"
               emissiveIntensity={1}
               transparent
               opacity={0.8}
