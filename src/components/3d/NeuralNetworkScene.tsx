@@ -202,8 +202,7 @@ const CameraRig = () => {
     camera.lookAt(0, 0, 0);
   });
 
-  // Attach event listener
-  useMemo(() => {
+  useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [handleMouseMove]);
