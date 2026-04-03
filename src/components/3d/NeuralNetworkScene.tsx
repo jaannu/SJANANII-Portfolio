@@ -45,24 +45,30 @@ const Connection = ({ start, end, color, speed = 1 }: {
   color: string;
   speed?: number;
 }) => {
-  const lineRef = useRef<THREE.Line>(null);
+  const meshRef = useRef<THREE.Mesh>(null);
 
-  const geometry = useMemo(() => {
-    const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)];
-    return new THREE.BufferGeometry().setFromPoints(points);
+  const { midpoint, length, rotation } = useMemo(() => {
+    const s = new THREE.Vector3(...start);
+    const e = new THREE.Vector3(...end);
+    const mid = s.clone().add(e).multiplyScalar(0.5);
+    const dir = e.clone().sub(s);
+    const len = dir.length();
+    const rot = new THREE.Euler(0, 0, Math.atan2(dir.y, dir.x));
+    return { midpoint: mid, length: len, rotation: rot };
   }, [start, end]);
 
   useFrame((state) => {
-    if (lineRef.current) {
-      const mat = lineRef.current.material as THREE.LineBasicMaterial;
-      mat.opacity = Math.sin(state.clock.elapsedTime * speed) * 0.3 + 0.4;
+    if (meshRef.current) {
+      (meshRef.current.material as THREE.MeshBasicMaterial).opacity =
+        Math.sin(state.clock.elapsedTime * speed) * 0.2 + 0.25;
     }
   });
 
   return (
-    <line ref={lineRef as any} geometry={geometry}>
-      <lineBasicMaterial color={color} transparent opacity={0.4} />
-    </line>
+    <mesh ref={meshRef} position={midpoint} rotation={rotation}>
+      <planeGeometry args={[length, 0.015]} />
+      <meshBasicMaterial color={color} transparent opacity={0.3} side={THREE.DoubleSide} />
+    </mesh>
   );
 };
 
