@@ -6,15 +6,25 @@ import TerminalWindow from "@/components/TerminalWindow";
 
 const experiences = [
   {
+    title: "Web Analyst Intern",
+    company: "Zoho Corporation",
+    period: "March 2025 – May 2025",
+    highlights: [
+      "Building a GitHub extension for Zoho Projects to enhance repository management efficiency",
+      "Mapping GitHub repositories to Zoho Projects for seamless integration and tracking",
+      "Streamlining developer workflows by bridging version control with project management",
+    ],
+    current: true,
+  },
+  {
     title: "AI Intern – Cybersecurity",
     company: "ASSR Emporium, KK Nagar",
-    period: "July 2025 – Present",
+    period: "July 2025 – December 2025",
     highlights: [
       "Designed a multimodal agentic RAG system that improved threat identification efficiency by ~30%",
       "Reduced incident response time by ~28% through LLM-powered semantic retrieval and intelligent alerting",
       "Enhanced cybersecurity team productivity by ~20% by automating threat knowledge access",
     ],
-    current: true,
   },
   {
     title: "Research Intern - Machine Learning",
