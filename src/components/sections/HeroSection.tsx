@@ -5,10 +5,17 @@ import SplitText from "@/components/animations/SplitText";
 import GradientText from "@/components/animations/GradientText";
 import Magnet from "@/components/animations/Magnet";
 import FadeIn from "@/components/animations/FadeIn";
+import NeuralNetworkScene from "@/components/3d/NeuralNetworkScene";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* 3D Neural Network Background */}
+      <NeuralNetworkScene />
+
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-background/40 z-[1]" />
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
         <motion.div
@@ -18,7 +25,7 @@ const HeroSection = () => {
         >
           <FadeIn delay={0.2}>
             <div className="max-w-3xl mx-auto mb-8">
-              <div className="p-6 md:p-10 text-center backdrop-blur-2xl bg-background/20 rounded-2xl border border-border/15 shadow-elevated">
+              <div className="p-6 md:p-10 text-center backdrop-blur-xl bg-background/30 rounded-2xl border border-border/20">
                 <p className="font-mono text-sm text-accent mb-4">
                   <span className="text-muted-foreground">$</span> whoami
                 </p>
@@ -59,7 +66,7 @@ const HeroSection = () => {
               <Magnet strength={0.2}>
                 <a
                   href="mailto:j.a.n27suresh@gmail.com"
-                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-2xl bg-background/20 border border-border/15 hover:border-accent/50 transition-all duration-300"
+                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20 hover:border-accent/50 transition-all duration-300"
                 >
                   <Mail className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-mono">j.a.n27suresh@gmail.com</span>
@@ -69,7 +76,7 @@ const HeroSection = () => {
               <Magnet strength={0.2}>
                 <a
                   href="tel:+918056028354"
-                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-2xl bg-background/20 border border-border/15 hover:border-accent/50 transition-all duration-300"
+                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20 hover:border-accent/50 transition-all duration-300"
                 >
                   <Phone className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-mono">+91 8056028354</span>
@@ -81,7 +88,7 @@ const HeroSection = () => {
                   href="https://linkedin.com/in/s-jananii-724468289"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-2xl bg-background/20 border border-border/15 hover:border-accent/50 transition-all duration-300"
+                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20 hover:border-accent/50 transition-all duration-300"
                 >
                   <Linkedin className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-mono">LinkedIn</span>
@@ -89,7 +96,7 @@ const HeroSection = () => {
               </Magnet>
 
               <Magnet strength={0.2}>
-                <span className="flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-2xl bg-background/20 border border-border/15">
+                <span className="flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20">
                   <MapPin className="w-4 h-4 text-accent" />
                   <span className="text-sm font-mono">Chennai, Tamil Nadu</span>
                 </span>

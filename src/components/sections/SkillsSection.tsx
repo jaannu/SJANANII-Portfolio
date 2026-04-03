@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { Code, Database, Wrench, Brain, Globe } from "lucide-react";
+import { Code, Database, Wrench, Brain, Globe, Server } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
+import TerminalWindow from "@/components/TerminalWindow";
+import FloatingParticles from "@/components/3d/FloatingParticles";
 
 const skillCategories = [
   {
@@ -39,6 +41,9 @@ const skillCategories = [
 const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
+      {/* 3D Floating particles background */}
+      <FloatingParticles />
+
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
@@ -54,41 +59,43 @@ const SkillsSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {skillCategories.map((category, index) => (
             <FadeIn key={index} delay={index * 0.1}>
-              <motion.div
-                className="rounded-xl border border-border/20 overflow-hidden backdrop-blur-2xl bg-background/15 p-6 h-full"
-                whileHover={{ 
-                  y: -8,
-                  boxShadow: "0 20px 40px hsl(355 70% 43% / 0.15)"
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4`}>
-                  <category.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-                
-                <h3 className="text-xl font-display font-semibold mb-4">{category.title}</h3>
-                
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skillIndex}
-                      className="px-3 py-1.5 text-sm rounded-full bg-secondary/40 text-secondary-foreground border border-border/30 hover:border-accent/50 transition-colors cursor-default font-mono"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
+              <TerminalWindow title={`${category.title.toLowerCase().replace(/ & /g, '-')}.config`}>
+                <motion.div
+                  className="p-6 h-full"
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: "0 20px 40px hsl(355 70% 43% / 0.15)"
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4`}>
+                    <category.icon className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  
+                  <h3 className="text-xl font-display font-semibold mb-4">{category.title}</h3>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.span
+                        key={skillIndex}
+                        className="px-3 py-1.5 text-sm rounded-full bg-secondary/80 text-secondary-foreground border border-border/50 hover:border-accent/50 transition-colors cursor-default font-mono"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              </TerminalWindow>
             </FadeIn>
           ))}
         </div>
 
-        {/* Core Competencies */}
+        {/* Skills visualization */}
         <FadeIn delay={0.5}>
           <div className="mt-16 max-w-4xl mx-auto">
             <h3 className="text-2xl font-display font-semibold text-center mb-8">
@@ -104,7 +111,7 @@ const SkillsSection = () => {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="text-center backdrop-blur-2xl bg-background/15 rounded-xl p-4 border border-border/20"
+                  className="text-center"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -112,7 +119,7 @@ const SkillsSection = () => {
                 >
                   <div className="relative w-24 h-24 mx-auto mb-3">
                     <svg className="w-full h-full transform -rotate-90">
-                      <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="6" fill="none" className="text-secondary/50" />
+                      <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="6" fill="none" className="text-secondary" />
                       <motion.circle
                         cx="48" cy="48" r="40"
                         stroke="url(#gradient)"

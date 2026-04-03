@@ -4,10 +4,13 @@ import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import Magnet from "@/components/animations/Magnet";
 import GradientText from "@/components/animations/GradientText";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const ContactSection = () => {
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-96 bg-crimson-bright/10 rounded-full blur-3xl" />
+      
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
@@ -25,20 +28,12 @@ const ContactSection = () => {
 
         <FadeIn delay={0.2}>
           <div className="max-w-2xl mx-auto">
-            <div className="rounded-xl border border-border/20 overflow-hidden backdrop-blur-2xl bg-background/15 mb-12">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-secondary/30 border-b border-border/15">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-crimson-bright/80" />
-                  <div className="w-3 h-3 rounded-full bg-crimson-medium/60" />
-                  <div className="w-3 h-3 rounded-full bg-crimson-dark/60" />
-                </div>
-                <span className="text-xs font-mono text-muted-foreground ml-2">contact-info.sh</span>
-              </div>
+            <TerminalWindow title="contact-info.sh" className="mb-12">
               <div className="grid sm:grid-cols-2 gap-4 p-4">
                 <Magnet strength={0.1}>
                   <motion.a
                     href="mailto:j.a.n27suresh@gmail.com"
-                    className="rounded-xl p-5 flex items-center gap-4 group hover:bg-secondary/20 transition-colors"
+                    className="rounded-xl p-5 flex items-center gap-4 group hover:bg-secondary/30 transition-colors"
                     whileHover={{ y: -5 }}
                   >
                     <div className="p-4 rounded-xl bg-gradient-accent group-hover:scale-110 transition-transform">
@@ -54,7 +49,7 @@ const ContactSection = () => {
                 <Magnet strength={0.1}>
                   <motion.a
                     href="tel:+918056028354"
-                    className="rounded-xl p-5 flex items-center gap-4 group hover:bg-secondary/20 transition-colors"
+                    className="rounded-xl p-5 flex items-center gap-4 group hover:bg-secondary/30 transition-colors"
                     whileHover={{ y: -5 }}
                   >
                     <div className="p-4 rounded-xl bg-gradient-accent group-hover:scale-110 transition-transform">
@@ -72,7 +67,7 @@ const ContactSection = () => {
                     href="https://linkedin.com/in/s-jananii-724468289"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl p-5 flex items-center gap-4 group hover:bg-secondary/20 transition-colors"
+                    className="rounded-xl p-5 flex items-center gap-4 group hover:bg-secondary/30 transition-colors"
                     whileHover={{ y: -5 }}
                   >
                     <div className="p-4 rounded-xl bg-gradient-accent group-hover:scale-110 transition-transform">
@@ -100,8 +95,9 @@ const ContactSection = () => {
                   </motion.div>
                 </Magnet>
               </div>
-            </div>
+            </TerminalWindow>
 
+            {/* CTA */}
             <FadeIn delay={0.4}>
               <div className="text-center">
                 <Magnet strength={0.15}>
@@ -121,8 +117,9 @@ const ContactSection = () => {
         </FadeIn>
       </div>
 
+      {/* Footer */}
       <FadeIn delay={0.6}>
-        <footer className="mt-24 pt-8 border-t border-border/20">
+        <footer className="mt-24 pt-8 border-t border-border/30">
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground font-mono">

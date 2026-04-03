@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Trophy, Medal, Award, Star } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const achievements = [
   { title: "Winner – VisAIon Hackathon", org: "CIKLUM & IET", description: "AI-driven customer personalization system", icon: Trophy, tier: "gold" },
@@ -20,14 +21,22 @@ const speakerExperience = [
 const AchievementsSection = () => {
   const getTierStyles = (tier: string) => {
     switch (tier) {
-      case "gold": return "border-yellow-500/20 bg-yellow-500/5";
-      case "silver": return "border-gray-400/20 bg-gray-400/5";
-      default: return "border-amber-700/20 bg-amber-700/5";
+      case "gold": return "from-yellow-500/30 to-yellow-600/10 border-yellow-500/30";
+      case "silver": return "from-gray-300/30 to-gray-400/10 border-gray-400/30";
+      default: return "from-amber-700/30 to-amber-800/10 border-amber-700/30";
     }
   };
 
   return (
     <section id="achievements" className="py-24 relative overflow-hidden">
+      <motion.div
+        className="absolute top-20 right-10 text-accent/5"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      >
+        <Trophy className="w-64 h-64" />
+      </motion.div>
+
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
@@ -40,16 +49,17 @@ const AchievementsSection = () => {
           </div>
         </FadeIn>
 
+        {/* Achievements Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
           {achievements.map((achievement, index) => (
             <FadeIn key={index} delay={index * 0.1}>
               <motion.div
-                className={`relative rounded-2xl p-6 backdrop-blur-2xl ${getTierStyles(achievement.tier)} border h-full`}
+                className={`relative rounded-2xl p-6 bg-gradient-to-br ${getTierStyles(achievement.tier)} backdrop-blur-sm border h-full`}
                 whileHover={{ scale: 1.03, y: -5 }}
                 transition={{ duration: 0.2 }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-background/30 backdrop-blur-sm">
+                  <div className="p-3 rounded-xl bg-background/50">
                     <achievement.icon className={`w-6 h-6 ${
                       achievement.tier === "gold" ? "text-yellow-500" :
                       achievement.tier === "silver" ? "text-gray-300" :
@@ -67,6 +77,7 @@ const AchievementsSection = () => {
           ))}
         </div>
 
+        {/* Speaker Experience */}
         <FadeIn delay={0.5}>
           <div className="max-w-3xl mx-auto">
             <h3 className="text-2xl font-display font-semibold text-center mb-8">
@@ -75,18 +86,19 @@ const AchievementsSection = () => {
             
             <div className="grid md:grid-cols-2 gap-4">
               {speakerExperience.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  className="p-5 text-center rounded-xl backdrop-blur-2xl bg-background/15 border border-border/20"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -3 }}
-                >
-                  <h4 className="font-semibold mb-2">{exp.title}</h4>
-                  <p className="text-sm text-muted-foreground font-mono">{exp.description}</p>
-                </motion.div>
+                <TerminalWindow key={index} title={`talk-${index}.md`}>
+                  <motion.div
+                    className="p-5 text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -3 }}
+                  >
+                    <h4 className="font-semibold mb-2">{exp.title}</h4>
+                    <p className="text-sm text-muted-foreground font-mono">{exp.description}</p>
+                  </motion.div>
+                </TerminalWindow>
               ))}
             </div>
           </div>
