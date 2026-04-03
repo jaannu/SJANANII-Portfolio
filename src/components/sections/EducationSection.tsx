@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen, Calendar } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
-import TerminalWindow from "@/components/TerminalWindow";
 
 const education = [
   {
@@ -39,8 +38,6 @@ const certifications = [
 const EducationSection = () => {
   return (
     <section id="education" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/10 to-background" />
-      
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
@@ -53,7 +50,6 @@ const EducationSection = () => {
           </div>
         </FadeIn>
 
-        {/* Education */}
         <div className="max-w-4xl mx-auto mb-16">
           <FadeIn>
             <h3 className="text-2xl font-display font-semibold mb-8 flex items-center gap-3">
@@ -65,40 +61,37 @@ const EducationSection = () => {
           <div className="space-y-6">
             {education.map((edu, index) => (
               <FadeIn key={index} delay={index * 0.15} direction="left">
-                <TerminalWindow title={`degree-${index}.md`}>
-                  <motion.div
-                    className="p-6 relative"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {edu.current && (
-                      <div className="absolute top-0 right-0 px-4 py-1 bg-accent text-primary-foreground text-xs font-mono rounded-bl-xl">
-                        Currently Pursuing
-                      </div>
-                    )}
-                    
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div>
-                        <h4 className="text-xl font-display font-semibold mb-2">{edu.degree}</h4>
-                        <p className="text-muted-foreground mb-1 font-mono text-sm">{edu.institution}</p>
-                        <p className="text-sm text-muted-foreground/70 font-mono">{edu.location}</p>
-                      </div>
-                      <div className="text-left md:text-right">
-                        <div className="flex items-center gap-2 text-accent mb-1">
-                          <Calendar className="w-4 h-4" />
-                          <span className="font-mono text-sm">{edu.year}</span>
-                        </div>
-                        <p className="text-sm font-semibold font-mono">{edu.grade}</p>
-                      </div>
+                <motion.div
+                  className="rounded-xl border border-border/20 overflow-hidden backdrop-blur-2xl bg-background/15 p-6 relative"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {edu.current && (
+                    <div className="absolute top-0 right-0 px-4 py-1 bg-accent text-primary-foreground text-xs font-mono rounded-bl-xl">
+                      Currently Pursuing
                     </div>
-                  </motion.div>
-                </TerminalWindow>
+                  )}
+                  
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                      <h4 className="text-xl font-display font-semibold mb-2">{edu.degree}</h4>
+                      <p className="text-muted-foreground mb-1 font-mono text-sm">{edu.institution}</p>
+                      <p className="text-sm text-muted-foreground/70 font-mono">{edu.location}</p>
+                    </div>
+                    <div className="text-left md:text-right">
+                      <div className="flex items-center gap-2 text-accent mb-1">
+                        <Calendar className="w-4 h-4" />
+                        <span className="font-mono text-sm">{edu.year}</span>
+                      </div>
+                      <p className="text-sm font-semibold font-mono">{edu.grade}</p>
+                    </div>
+                  </div>
+                </motion.div>
               </FadeIn>
             ))}
           </div>
         </div>
 
-        {/* Certifications */}
         <FadeIn delay={0.3}>
           <div className="max-w-5xl mx-auto">
             <h3 className="text-2xl font-display font-semibold mb-8 flex items-center gap-3 justify-center">
@@ -110,7 +103,7 @@ const EducationSection = () => {
               {certifications.map((cert, index) => (
                 <motion.div
                   key={index}
-                  className="glass-card rounded-xl px-4 py-3 flex items-center gap-3 hover:border-accent/30 transition-colors"
+                  className="backdrop-blur-2xl bg-background/15 border border-border/20 rounded-xl px-4 py-3 flex items-center gap-3 hover:border-accent/30 transition-colors"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.03 }}
