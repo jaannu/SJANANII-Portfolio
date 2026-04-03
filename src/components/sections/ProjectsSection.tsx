@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Shield, Brain, Car, Users, BarChart, DollarSign, Vote } from "lucide-react";
+import { Shield, Brain, Car, Users, BarChart, DollarSign, Vote } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import Magnet from "@/components/animations/Magnet";
-import TerminalWindow from "@/components/TerminalWindow";
-import DataFlowVisualization from "@/components/3d/DataFlowVisualization";
 
 const projects = [
   {
@@ -65,13 +63,7 @@ const ProjectsSection = () => {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      {/* 3D Data Flow Background */}
-      <div className="absolute inset-0 opacity-30">
-        <DataFlowVisualization />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background/80" />
-      
+    <section id="projects" className="py-24 relative">
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
@@ -84,45 +76,38 @@ const ProjectsSection = () => {
           </div>
         </FadeIn>
 
-        {/* Featured Projects */}
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
           {featuredProjects.map((project, index) => (
             <FadeIn key={index} delay={index * 0.15}>
               <Magnet strength={0.08}>
-                <TerminalWindow title={`${project.title.toLowerCase().split(' ').slice(0, 2).join('-')}.py`}>
-                  <motion.div
-                    className="p-8 h-full flex flex-col group"
-                    whileHover={{ 
-                      y: -12,
-                      boxShadow: "0 30px 60px hsl(355 70% 43% / 0.2)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                      <project.icon className="w-7 h-7 text-primary-foreground" />
-                    </div>
-                    
-                    <h3 className="text-xl font-display font-semibold mb-3">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-6 flex-grow">{project.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="px-3 py-1 text-xs rounded-full bg-accent/20 text-accent font-mono"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </TerminalWindow>
+                <motion.div
+                  className="rounded-xl border border-border/20 overflow-hidden backdrop-blur-2xl bg-background/15 p-8 h-full flex flex-col group"
+                  whileHover={{ 
+                    y: -12,
+                    boxShadow: "0 30px 60px hsl(355 70% 43% / 0.2)"
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <project.icon className="w-7 h-7 text-primary-foreground" />
+                  </div>
+                  
+                  <h3 className="text-xl font-display font-semibold mb-3">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-6 flex-grow">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span key={tagIndex} className="px-3 py-1 text-xs rounded-full bg-accent/20 text-accent font-mono">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
               </Magnet>
             </FadeIn>
           ))}
         </div>
 
-        {/* Other Projects */}
         <FadeIn delay={0.4}>
           <h3 className="text-2xl font-display font-semibold text-center mb-8">
             <span className="text-gradient">More Projects</span>
@@ -132,14 +117,14 @@ const ProjectsSection = () => {
             {otherProjects.map((project, index) => (
               <motion.div
                 key={index}
-                className="backdrop-blur-xl bg-background/30 border border-border/20 rounded-xl p-5 flex items-start gap-4 hover:border-accent/30 transition-colors"
+                className="backdrop-blur-2xl bg-background/15 border border-border/20 rounded-xl p-5 flex items-start gap-4 hover:border-accent/30 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ x: 5 }}
               >
-                <div className="p-2.5 rounded-lg bg-secondary/80">
+                <div className="p-2.5 rounded-lg bg-secondary/40">
                   <project.icon className="w-5 h-5 text-accent" />
                 </div>
                 <div>

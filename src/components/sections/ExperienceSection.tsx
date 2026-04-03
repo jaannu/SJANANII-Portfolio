@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, TrendingUp } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import TerminalWindow from "@/components/TerminalWindow";
@@ -66,8 +66,6 @@ const leadership = [
 const ExperienceSection = () => {
   return (
     <section id="experience" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
-      
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
@@ -80,18 +78,12 @@ const ExperienceSection = () => {
           </div>
         </FadeIn>
 
-        {/* Experience Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-primary to-accent/20 transform md:-translate-x-1/2" />
 
             {experiences.map((exp, index) => (
-              <FadeIn
-                key={index}
-                delay={index * 0.15}
-                direction={index % 2 === 0 ? "left" : "right"}
-              >
+              <FadeIn key={index} delay={index * 0.15} direction={index % 2 === 0 ? "left" : "right"}>
                 <motion.div
                   className={`relative flex flex-col md:flex-row gap-8 mb-12 ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
@@ -99,7 +91,6 @@ const ExperienceSection = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {/* Timeline dot */}
                   <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-accent shadow-glow transform -translate-x-1/2 md:-translate-x-1/2 mt-6">
                     {exp.current && (
                       <motion.div
@@ -110,9 +101,16 @@ const ExperienceSection = () => {
                     )}
                   </div>
 
-                  {/* Content */}
                   <div className={`md:w-1/2 pl-8 md:pl-0 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                    <TerminalWindow title={`job-${index}.sh`}>
+                    <div className="rounded-xl border border-border/20 overflow-hidden backdrop-blur-2xl bg-background/15">
+                      <div className="flex items-center gap-2 px-4 py-2.5 bg-secondary/30 border-b border-border/15">
+                        <div className="flex gap-1.5">
+                          <div className="w-3 h-3 rounded-full bg-crimson-bright/80" />
+                          <div className="w-3 h-3 rounded-full bg-crimson-medium/60" />
+                          <div className="w-3 h-3 rounded-full bg-crimson-dark/60" />
+                        </div>
+                        <span className="text-xs font-mono text-muted-foreground ml-2">{`job-${index}.sh`}</span>
+                      </div>
                       <div className="p-5">
                         <div className={`flex items-center gap-2 text-accent text-sm mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
                           <Calendar className="w-4 h-4" />
@@ -134,10 +132,9 @@ const ExperienceSection = () => {
                           ))}
                         </ul>
                       </div>
-                    </TerminalWindow>
+                    </div>
                   </div>
 
-                  {/* Spacer for timeline */}
                   <div className="hidden md:block md:w-1/2" />
                 </motion.div>
               </FadeIn>
@@ -154,11 +151,16 @@ const ExperienceSection = () => {
             
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {leadership.map((role, index) => (
-                <TerminalWindow key={index} title={`role-${index}.md`}>
-                  <motion.div
-                    className="p-5"
-                    whileHover={{ y: -5 }}
-                  >
+                <div key={index} className="rounded-xl border border-border/20 overflow-hidden backdrop-blur-2xl bg-background/15">
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-secondary/30 border-b border-border/15">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-crimson-bright/80" />
+                      <div className="w-3 h-3 rounded-full bg-crimson-medium/60" />
+                      <div className="w-3 h-3 rounded-full bg-crimson-dark/60" />
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground ml-2">{`role-${index}.md`}</span>
+                  </div>
+                  <motion.div className="p-5" whileHover={{ y: -5 }}>
                     <div className="flex items-start gap-4">
                       <div className="p-3 rounded-lg bg-accent/20">
                         <Briefcase className="w-5 h-5 text-accent" />
@@ -171,7 +173,7 @@ const ExperienceSection = () => {
                       </div>
                     </div>
                   </motion.div>
-                </TerminalWindow>
+                </div>
               ))}
             </div>
           </div>
