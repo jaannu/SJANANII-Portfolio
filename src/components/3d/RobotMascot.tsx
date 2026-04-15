@@ -180,8 +180,8 @@ const RobotMascot = () => {
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 w-28 h-28 md:w-36 md:h-36 pointer-events-auto cursor-pointer transition-opacity duration-500"
-      style={{ opacity: visible ? 1 : 0 }}
+      className="fixed bottom-4 right-4 z-50 w-20 h-20 md:w-24 md:h-24 pointer-events-none transition-opacity duration-500"
+      style={{ opacity: visible ? 0.85 : 0 }}
     >
       <Canvas
         camera={{ position: [0, 0, 3], fov: 40 }}
