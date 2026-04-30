@@ -6,6 +6,16 @@ import TerminalWindow from "@/components/TerminalWindow";
 
 const experiences = [
   {
+    title: "Internship",
+    company: "ZOHO Corporation, Guduvancherry",
+    period: "March 2026 – May 2026",
+    highlights: [
+      "Built a GitHub integration in ZOHO Projects using ZOHO Sigma for seamless commit mapping",
+      "Enabled direct access of commits from project/task tabs, reducing context-switching for developers",
+    ],
+    current: true,
+  },
+  {
     title: "AI Intern – Cybersecurity",
     company: "ASSR Emporium, KK Nagar",
     period: "July 2025 – Present",
