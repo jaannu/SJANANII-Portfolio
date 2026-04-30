@@ -24,7 +24,6 @@ const experiences = [
       "Reduced incident response time by ~28% through LLM-powered semantic retrieval and intelligent alerting",
       "Enhanced cybersecurity team productivity by ~20% by automating threat knowledge access",
     ],
-    current: true,
   },
   {
     title: "Research Intern - Machine Learning",
