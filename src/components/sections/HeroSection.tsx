@@ -5,16 +5,24 @@ import SplitText from "@/components/animations/SplitText";
 import GradientText from "@/components/animations/GradientText";
 import Magnet from "@/components/animations/Magnet";
 import FadeIn from "@/components/animations/FadeIn";
-import NeuralNetworkScene from "@/components/3d/NeuralNetworkScene";
+import TerminalWindow from "@/components/TerminalWindow";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* 3D Neural Network Background */}
-      <NeuralNetworkScene />
-
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-background/40 z-[1]" />
+      {/* Animated background elements */}
+      <div className="absolute inset-0 bg-gradient-hero">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-crimson-medium/20 blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-crimson-bright/15 blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.6, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
@@ -24,8 +32,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <FadeIn delay={0.2}>
-            <div className="max-w-3xl mx-auto mb-8">
-              <div className="p-6 md:p-10 text-center backdrop-blur-xl bg-background/30 rounded-2xl border border-border/20">
+            <TerminalWindow title="~/s-jananii/portfolio" className="max-w-3xl mx-auto mb-8">
+              <div className="p-6 md:p-10 text-center">
                 <p className="font-mono text-sm text-accent mb-4">
                   <span className="text-muted-foreground">$</span> whoami
                 </p>
@@ -57,7 +65,7 @@ const HeroSection = () => {
                   <span className="text-accent">→</span> Building intelligent, data-driven solutions that make an impact
                 </p>
               </div>
-            </div>
+            </TerminalWindow>
           </FadeIn>
 
           {/* Contact Links */}
@@ -66,7 +74,7 @@ const HeroSection = () => {
               <Magnet strength={0.2}>
                 <a
                   href="mailto:j.a.n27suresh@gmail.com"
-                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20 hover:border-accent/50 transition-all duration-300"
+                  className="group flex items-center gap-2 px-5 py-3 rounded-full glass-card hover:border-accent/50 transition-all duration-300"
                 >
                   <Mail className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-mono">j.a.n27suresh@gmail.com</span>
@@ -76,7 +84,7 @@ const HeroSection = () => {
               <Magnet strength={0.2}>
                 <a
                   href="tel:+918056028354"
-                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20 hover:border-accent/50 transition-all duration-300"
+                  className="group flex items-center gap-2 px-5 py-3 rounded-full glass-card hover:border-accent/50 transition-all duration-300"
                 >
                   <Phone className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-mono">+91 8056028354</span>
@@ -88,7 +96,7 @@ const HeroSection = () => {
                   href="https://linkedin.com/in/s-jananii-724468289"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20 hover:border-accent/50 transition-all duration-300"
+                  className="group flex items-center gap-2 px-5 py-3 rounded-full glass-card hover:border-accent/50 transition-all duration-300"
                 >
                   <Linkedin className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-mono">LinkedIn</span>
@@ -96,7 +104,7 @@ const HeroSection = () => {
               </Magnet>
 
               <Magnet strength={0.2}>
-                <span className="flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-xl bg-background/30 border border-border/20">
+                <span className="flex items-center gap-2 px-5 py-3 rounded-full glass-card">
                   <MapPin className="w-4 h-4 text-accent" />
                   <span className="text-sm font-mono">Chennai, Tamil Nadu</span>
                 </span>
@@ -128,7 +136,7 @@ const HeroSection = () => {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}

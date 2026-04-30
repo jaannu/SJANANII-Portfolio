@@ -3,7 +3,6 @@ import { Code, Database, Wrench, Brain, Globe, Server } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import TerminalWindow from "@/components/TerminalWindow";
-import FloatingParticles from "@/components/3d/FloatingParticles";
 
 const skillCategories = [
   {
@@ -41,8 +40,9 @@ const skillCategories = [
 const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
-      {/* 3D Floating particles background */}
-      <FloatingParticles />
+      {/* Background accent */}
+      <div className="absolute top-1/2 left-0 w-1/2 h-1/2 bg-crimson-medium/5 rounded-full blur-3xl -translate-y-1/2" />
+      <div className="absolute top-1/2 right-0 w-1/2 h-1/2 bg-crimson-bright/5 rounded-full blur-3xl -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>

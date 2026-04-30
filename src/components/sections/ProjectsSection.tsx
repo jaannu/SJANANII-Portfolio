@@ -4,7 +4,6 @@ import FadeIn from "@/components/animations/FadeIn";
 import BlurText from "@/components/animations/BlurText";
 import Magnet from "@/components/animations/Magnet";
 import TerminalWindow from "@/components/TerminalWindow";
-import DataFlowVisualization from "@/components/3d/DataFlowVisualization";
 
 const projects = [
   {
@@ -65,12 +64,8 @@ const ProjectsSection = () => {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      {/* 3D Data Flow Background */}
-      <div className="absolute inset-0 opacity-30">
-        <DataFlowVisualization />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background/80" />
+    <section id="projects" className="py-24 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
       
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
@@ -132,7 +127,7 @@ const ProjectsSection = () => {
             {otherProjects.map((project, index) => (
               <motion.div
                 key={index}
-                className="backdrop-blur-xl bg-background/30 border border-border/20 rounded-xl p-5 flex items-start gap-4 hover:border-accent/30 transition-colors"
+                className="glass-card rounded-xl p-5 flex items-start gap-4 hover:border-accent/30 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
